@@ -1,0 +1,418 @@
+
+/*purplelinks*/
+@link-color: #808;
+/*olivelinks*/
+@link-color: #880;
+/*redlinks*/
+@link-color: #800;
+/*greenlinks*/
+@link-color: #080;
+/*bluelinks*/
+@link-color: #008;
+/*cyanlinks*/
+@link-color: #088;
+
+@footercolor:lighten(@link-color,67%);
+@headercolor:#9999ff;
+@headercolor:@footercolor;
+@commentcolor:#399;
+@maincolor:yellow;
+@magic-number:22px;
+@sans-font: Calibri, Helvetica, Arial, sans-serif;
+@serif-font:Cambria, Georgia, "Times new Roman",  serif;
+@font-family-monospace  = "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier, monospace;
+@mainfontcolor:#101;
+@bgcolor:@footercolor;
+@headercolor:transparent;
+@maincolor:transparent;
+@footercolor:transparent;
+
+
+
+
+
+
+
+.wrap(){
+	width:@total-width;
+	margin:0 auto;
+	.clearfix();
+}
+.headings-general() {
+	font-weight:bold;
+	color:lighten(@mainfontcolor,10%);
+	margin-bottom:@magic-number;
+	font-family:@serif-font;
+	text-align:left;
+}
+/*
+resetting stuff!
+*/
+
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,
+a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,
+small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,
+table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,
+figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,
+time,mark,audio,video{margin:0;padding:0;border:0;font-size:100.01%;font:inherit;vertical-align:baseline;}
+body{line-height:1;}
+ol,ul{list-style: none;}
+blockquote,q{quotes:none;}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
+table{border-collapse:collapse;border-spacing:0;}
+
+
+@import url(semantic.gs/stylesheets/less/grid.less);
+/** --------------------------------------------------------------
+* HTML5 elements.
+*
+*/
+article,aside,details,figcaption,figure,footer,header,hgroup,nav,section{display:block;}
+audio,canvas,video{display:inline-block;*display:inline;*zoom:1;}
+audio:not([controls]){display:none;}
+[hidden]{display:none;}
+
+body{
+	background:@bgcolor;
+	text-align:justify;
+	color:@mainfontcolor;
+	font:100.01%/1.375 @sans-font;
+}
+
+
+
+h1{
+	.headings-general;
+	font-size:2.375em;
+	line-height:1.1579;
+	margin-bottom:@magic-number - 1px;
+}
+h2{
+	.headings-general;
+	font-size:1.875em;
+	line-height:1.4667;
+}
+h3{.headings-general;font-size:1.375em;line-height:1;}
+h4{.headings-general;font-size:1.25em;line-height:1.1;}
+h5{.headings-general;font-size:1em;font-weight:bold;}
+h6{.headings-general;font-size:1em;font-weight:bold;margin-bottom:0;}
+h1 img,h2 img,h3 img,h4 img,h5 img,h6 img{margin:0;}
+
+
+
+/* Text elements */
+p{margin-bottom:1.375em;}
+a{
+	color:@link-color;
+	text-decoration:none;
+	&:visited{
+		color:lighten(@link-color,10%);
+		text-decoration:none;
+	}
+	&:focus,&:hover{
+		color:@link-color;
+		text-decoration:underline;
+	}
+	
+}
+blockquote{margin-left:2em;margin-bottom:1.375em; font-style:italic;}
+strong,dfn{font-weight:bold;}
+em,dfn{font-style:italic;}
+pre{margin-bottom:1.375em;white-space:pre;}
+pre,code,tt,.code{font:1em/1.375 @font-family-monospace; color:lighten(@mainfontcolor, 20%)}
+
+li ul,li ol{margin:0;}
+ul,ol{margin:0.6875em 1.5em 1.375em 0;padding-left:1.5em;}
+ul{list-style-type:disc;}
+ol{list-style-type:decimal;}
+dl{margin:0 0 1.375em 0;}
+dl dt{font-weight:bold;}
+dd{margin-left:1.5em;}
+
+
+/* Tables. Because of the need for padding on TH and TD, the vertical rhythm
+  on table cells has to be 33px, instead of the standard 22px or 44px
+  of other elements. */
+table{margin-bottom:1.375em;width:100%;}
+caption{text-align:left;font-style:italic;}
+thead{border-bottom:2px solid @mainfontcolor;}
+th{vertical-align:bottom;font-weight:bold;text-align:left;}
+th,td{padding:5px 10px 5px 5px;}
+tbody tr:nth-child(even) td, tbody tr.even td {}
+tbody tr{border-bottom:1px solid lighten(@mainfontcolor,10%);
+  &:hover{color:lighten(@mainfontcolor,30%);}
+}
+tfoot{font-style:italic;}
+
+
+hr {  
+	height: 1px; 
+	border: 0;
+	border-top: 1px solid; 	
+}
+div{
+	p,h1,h2{
+		/*padding:@magic-number/2;*/
+	}
+}
+p#header-top{
+	float:right;
+	text-align:right;
+	margin-top:0;
+}
+#header{
+	background-color:@headercolor;
+}
+
+div#comment{
+	/*background-color:@commentcolor;*/ 
+	color:@mainfontcolor;
+	margin-bottom:@magic-number;
+	padding:@magic-number/2;
+	border-right:1px solid @link-color;
+	border-bottom:1px solid @link-color;
+	border-top:1px solid lighten(@link-color,65%);
+	border-left:1px solid lighten(@link-color,65%);
+}
+p#comment-author{
+	.wrap();
+	padding-bottom:0;
+	font-weight:bold; 
+	font-size:120%;
+}
+p#comment-post{
+	.wrap();
+	width:100%;
+	text-align:justify;
+	margin-top:-1em;
+	font-style:italic;
+}
+p#comment-time{
+	.wrap();
+	font-size:70%;
+}
+#site-title{
+	
+	font-size:@magic-number*4;
+	font-weight:bold;
+	margin-top:-@magic-number;
+	padding-left:@magic-number;
+	font-style:italic;
+	color:lighten(@link-color,10%);
+	a{
+		text-decoration:none;
+		color:lighten(@link-color,10%);
+	}
+	a:hover{
+		text-decoration:none;
+		color:lighten(@link-color,10%);
+	}
+}
+#site-logo{
+	float:left;
+}
+#login-menu{
+	margin-top:@magic-number/2;
+	float:right;
+	font-size:smaller;
+	img.gravatar{
+		vertical-align:middle;
+	}
+	a{
+		text-decoration:none;
+	}
+	a:hover{
+		text-decoration:underline;
+	}
+}
+
+#outer-wrap-header{
+	background-color:@headercolor;
+
+}
+#inner-wrap-header{
+	.wrap();
+	/*height:@magic-number*3;*/
+/*	padding-bottom:@magic-number;*/
+}
+
+#header{
+	.column(12);
+	height:100%;
+	background-color:@headercolor;
+}
+
+
+
+#outer-wrap-flash{}
+#inner-wrap-flash{
+	.wrap();
+	height:auto;
+	margin-bottom:@magic-number;
+}
+
+#flash{
+	.column(12);
+	height:100%;
+	font-style:italic;
+	background-color:@maincolor;
+	/*border:2px solid @link-color;*/
+}
+
+
+#outer-wrap-featured{}
+#inner-wrap-featured{
+	.wrap();
+	height:@magic-number*5;
+	margin-bottom:@magic-number;
+}
+#featured{height:inherit;}
+
+#featured-first,
+#featured-middle,
+#featured-last{
+	.column(4);
+	background-color:@maincolor;
+	height:100%;
+}
+
+
+#outer-wrap-main{
+	background-color:@maincolor;
+}
+#inner-wrap-main{
+	.wrap();
+	padding-bottom:@magic-number;
+}
+#primary,
+#sidebar{
+	background-color:@maincolor;
+	height:100%;
+}
+#primary{.column(8);}
+#sidebar{
+.column(4);
+text-align:left;
+}
+
+
+#outer-wrap-triptych{}
+#inner-wrap-triptych{
+	.wrap();
+	height:@magic-number*5;
+	margin-bottom:0;
+	padding-bottom:@magic-number;
+}
+#triptych{height:inherit;}
+
+#triptych-first,
+#triptych-middle,
+#triptych-last{
+	.column(4);
+	background-color:@maincolor;
+	height:100%;
+}
+
+#inner-wrap-footer-column{
+	.wrap();
+	height:@magic-number*5;
+	margin-top:0;
+	margin-bottom:@magic-number/2;	
+	
+}
+
+#footer-column-one,
+#footer-column-two,
+#footer-column-three,
+#footer-column-four{
+	.column(3);
+	margin-top:0;
+	background-color:@footercolor;
+	height:100%;
+}
+
+#manage-post{
+	font-size:small;
+}
+#post-posted{
+	font-size:small;
+}
+#post-content{
+}
+
+#outer-wrap-footer{
+	padding-top:@magic-number/2;
+	background-color:@footercolor;
+	font-size:small;
+}
+#inner-wrap-footer{
+	.wrap();
+	
+}
+.gravatar{
+	vertical-align:middle;
+	margin-right:@magic-number/4;
+}
+#content{
+	background-color:@maincolor;
+	padding-top:@magic-number;
+	margin:0;
+	
+}
+#footer{
+	.column(12);
+	height:inherit;
+	overflow:auto;
+	font-style:italic;
+	margin-bottom:@magic-number;
+	background-color:@footercolor;
+}
+
+.validation-failed{
+	border:2px solid red;
+}
+.validation-message{
+	color:red;
+}
+
+.error, .alert, .warning, .notice, .success, .info{ 
+	padding: 0.8em; 
+	margin-bottom: 1em; 
+	border: 2px solid #ddd; 
+}
+
+.error, .alert{ 
+	/*background: #fbe3e4;*/ 
+	color: #8a1f11; 
+	border-color: #fbc2c4; 
+}
+.notice, .warning{ 
+	/*background: #fff6bf; */
+	color: #514721; 
+	border-color: #ffd324; 
+}
+.success{ 
+	/*background: #e6efc2;*/ 
+	color: #264409; 
+	border-color: #84fc49; 
+}
+.info{ 
+	/*background: #d5edf8;*/ 
+	color: #205791; 
+	border-color: #92cae4; 
+}
+.error a, .alert a{ 
+	color: #8a1f11; 
+}
+.notice a, .warning a{ 
+	color: #514721; 
+}
+.success a{ 
+	color: #264409; 
+}
+.info a{ 
+	color: #205791; 
+}
+
+
+
