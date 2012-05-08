@@ -3,9 +3,9 @@ class CMUser extends CObject implements IHasSQL, ArrayAccess
 {
 	 public $profile = array();
 
-	 public function __construct($ly=null) 
+	 public function __construct($bap=null) 
 	 {
-	 	 parent::__construct($ly);
+	 	 parent::__construct($bap);
 	 	 $profile = $this->session->GetAuthenticatedUser();
 	 	 $this->profile = is_null($profile) ? array() : $profile;
 	 	 $this['isAuthenticated'] = is_null($profile) ? false : true;

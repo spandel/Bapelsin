@@ -1,21 +1,14 @@
 <?php
-$time=$ly->session->getFlash('time');
 
-$dispTime="";
-if($time!=null)
-{
-	$time=round(microtime(true))-$time;
-	$dispTime="Det är ".$time." sekunder sen du uppdaterade senast! Sjuuukt bra information va?!";
-}
 $login=login_menu();
-$ly->data['header']="Bapelsin.";
-$ly->data['slogan']="The smart framework.";
-$ly->data['favicon']="bapelsin.png";
-$ly->data['logo']="bapelsin.png";
-$ly->data['logo_width']=110;
-$ly->data['logo_height']=110;
-$ly->data['footer']=<<<EOD
-<p>Lydia : a framework stolen by Daniel Spandel.</p>
+$bap->data['header']="Bapelsin.";
+$bap->data['slogan']="The smart framework.";
+$bap->data['favicon']="bapelsin.png";
+$bap->data['logo']="bapelsin.png";
+$bap->data['logo_width']=110;
+$bap->data['logo_height']=110;
+$bap->data['footer']=<<<EOD
+<p>Bapelsin : a framework by Daniel Spandel.</p>
 
 <p>
 Here's Daniels 
@@ -27,9 +20,9 @@ Here's Daniels
 </p>
 
 EOD;
-//$ly->data['footer']="Vadå fult? Det är ju du som inte har någon smak!<br/><br/>$dispTime";
+//$bap->data['footer']="Vadå fult? Det är ju du som inte har någon smak!<br/><br/>$dispTime";
 
-$ly->data['slogan-adjektivs']=array(
+$bap->data['slogan-adjektivs']=array(
 	'bonkers',
 	'smart',
 	'fun',
@@ -57,6 +50,6 @@ $ly->data['slogan-adjektivs']=array(
 	'dynamic',
 	);
 
-$ly->data['slogan']="The {$ly->data['slogan-adjektivs'][array_rand($ly->data['slogan-adjektivs'])]} framework.";
+$bap->data['slogan']="The {$bap->data['slogan-adjektivs'][array_rand($bap->data['slogan-adjektivs'])]} framework.";
 
 

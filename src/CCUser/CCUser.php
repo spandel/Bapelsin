@@ -2,7 +2,7 @@
 class CCUser extends CObject implements IController
 {
 	private $userModel;
-	private $pageTitle="Lydia users";
+	private $pageTitle="Bapelsin users";
 	
 	public function __construct()
 	{

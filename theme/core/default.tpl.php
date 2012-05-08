@@ -1,7 +1,7 @@
 <!doctype html>
-<html lang="<?=$ly->config['language']?>"> 
+<html lang="<?=$bap->config['language']?>"> 
 <head>
-  <meta charset="<?=$ly->config['character_encoding']?>">
+  <meta charset="<?=$bap->config['character_encoding']?>">
   <title><?=$title?></title>
   <link rel="stylesheet" href="<?=$stylesheet?>">
 </head>

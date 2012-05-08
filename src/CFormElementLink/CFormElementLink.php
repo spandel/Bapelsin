@@ -6,7 +6,7 @@ class CFormElementLink extends CFormElement{
 		parent::__construct($value, $attributes);
 		$this['type']='link';
 		
-		$this['url']=CLydia::instance()->request->createUrl($name);
+		$this['url']=CBapelsin::instance()->request->createUrl($name);
 		$this['name']=$value;
 	}
 }

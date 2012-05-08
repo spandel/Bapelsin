@@ -93,7 +93,7 @@ EOD;
 					{
 						//echo("hej");
 						//CLydia::instance()->redirectToController();
-						header('Location: ' . CLydia::instance()->request->createUrl("user/handler"));						
+						header('Location: ' . CBapelsin::instance()->request->createUrl("user/handler"));						
 					}
 				}
 			}

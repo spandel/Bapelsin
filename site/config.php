@@ -4,38 +4,38 @@ error_reporting(-1);
 ini_set('display_errors',1);
 
 //turn on/off debugging
-$ly->config['debug']['display-lydia'] = false;
-$ly->config['debug']['db-num-queries']=true;
-$ly->config['debug']['db-queries']=false;
-$ly->config['debug']['timer']=true;
+$bap->config['debug']['display-bapelsin'] = false;
+$bap->config['debug']['db-num-queries']=true;
+$bap->config['debug']['db-queries']=false;
+$bap->config['debug']['timer']=true;
 
 //set database(s)
-$ly->config['database'][0]['dsn']='sqlite:'.LYDIA_SITE_PATH.'/data/.ht.sqlite';
+$bap->config['database'][0]['dsn']='sqlite:'.BAPELSIN_SITE_PATH.'/data/.ht.sqlite';
 
 //sets a name for the session
-$ly->config['session_name']=preg_replace('/[:\.\/-_]/','',$_SERVER["SERVER_NAME"]);
-$ly->config['session_key']='lydia';
+$bap->config['session_name']=preg_replace('/[:\.\/-_]/','',$_SERVER["SERVER_NAME"]);
+$bap->config['session_key']='lydia';
 
 //set your timezone
-$ly->config['timezone']='Europe/Stockholm';
+$bap->config['timezone']='Europe/Stockholm';
 
 //set character encoding
-$ly->config['character_encoding']='UTF-8';
+$bap->config['character_encoding']='UTF-8';
 
 //set hashing algorithm. choose from: plain, md5salt, md5, sha1salt, sha1.
-$ly->config['hashing_algorithm']="sha1salt";
+$bap->config['hashing_algorithm']="sha1salt";
 
 //set if creating new users is allowed
-$ly->config['create_new_users'] = true;
+$bap->config['create_new_users'] = true;
 
 //set language
-$ly->config['language']='en';
+$bap->config['language']='en';
 
 //set base url. if null, default base_url will be used.
-$ly->config['base_url']=null;
+$bap->config['base_url']=null;
 
 //set controllers. 
-$ly->config['controllers'] = 
+$bap->config['controllers'] = 
 array(
 		'acp'		=> array('enabled' => true,'class' => 'CCAdminControlPanel'),
 		'blog'		=> array('enabled' => true,'class' => 'CCBlog'),
@@ -49,7 +49,7 @@ array(
 );
 
 //set what theme to use.
-$ly->config['theme'] = array(
+$bap->config['theme'] = array(
 	'name'=> 'grid', 
 	'stylesheet'=>'style.php',
 	'template_file'=>'default.tpl.php',
@@ -69,5 +69,5 @@ $ly->config['theme'] = array(
 * clean        = 1      => controller/method/arg1/arg2/arg3
 * querystring  = 2      => index.php?q=controller/method/arg1/arg2/arg3
 */
-$ly->config['url_type'] = 1;
+$bap->config['url_type'] = 1;
 

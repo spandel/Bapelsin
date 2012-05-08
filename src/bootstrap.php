@@ -1,8 +1,8 @@
 <?php
 function autoload($aClassName){
 	$classFile = "/src/{$aClassName}/{$aClassName}.php";
-	$file1 = LYDIA_INSTALL_PATH . $classFile;
-	$file2 = LYDIA_SITE_PATH . $classFile;
+	$file1 = BAPELSIN_INSTALL_PATH . $classFile;
+	$file2 = BAPELSIN_SITE_PATH . $classFile;
 	if(is_file($file1)) 
 	{
 		require_once($file1);
@@ -14,12 +14,12 @@ function autoload($aClassName){
 }
 function htmlent($str, $flags = ENT_COMPAT)
 {
-	return htmlentities($str, $flags, CLydia::instance()->config['character_encoding']);
+	return htmlentities($str, $flags, CBapelsin::instance()->config['character_encoding']);
 }
 spl_autoload_register('autoload');
 function exception_handler($e) 
 {
-  echo "Lydia: Uncaught exception: <p>" . $e->getMessage() . "</p><pre>" . $e->getTraceAsString(), "</pre>";
+  echo "Bapelsin: Uncaught exception: <p>" . $e->getMessage() . "</p><pre>" . $e->getTraceAsString(), "</pre>";
 }
 set_exception_handler('exception_handler');
 

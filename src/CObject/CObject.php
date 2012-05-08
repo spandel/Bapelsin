@@ -8,32 +8,32 @@ class CObject{
 	public $session;
 	public $user;
 	
-	protected function __construct($ly=null)
+	protected function __construct($bap=null)
 	{
-		if($ly==null)
-			$ly=CLydia::instance();
+		if($bap==null)
+			$bap=CBapelsin::instance();
 		
-		$this->config	= &$ly->config;
-		$this->data		= &$ly->data;
-		$this->request	= &$ly->request;
-		$this->db		= &$ly->db;
-		$this->views	= &$ly->views;
-		$this->session	= &$ly->session;
-		$this->user		= &$ly->user;
+		$this->config	= &$bap->config;
+		$this->data		= &$bap->data;
+		$this->request	= &$bap->request;
+		$this->db		= &$bap->db;
+		$this->views	= &$bap->views;
+		$this->session	= &$bap->session;
+		$this->user		= &$bap->user;
 	}
 	
 	protected function redirectTo($urlOrController=null, $method=null) 
 	{
-		$ly = CLydia::instance();
-		if(isset($ly->config['debug']['db-num-queries']) && $ly->config['debug']['db-num-queries'] && isset($ly->db)) 
+		$bap = CBapelsin::instance();
+		if(isset($bap->config['debug']['db-num-queries']) && $bap->config['debug']['db-num-queries'] && isset($bap->db)) 
 		{
 			$this->session->setFlash('database_numQueries', $this->db->GetNumQueries());
 		}    
-		if(isset($ly->config['debug']['db-queries']) && $ly->config['debug']['db-queries'] && isset($ly->db)) {
+		if(isset($bap->config['debug']['db-queries']) && $bap->config['debug']['db-queries'] && isset($bap->db)) {
 			$this->session->setFlash('database_queries', $this->db->GetQueries());
 		}    
-		if(isset($ly->config['debug']['timer']) && $ly->config['debug']['timer']) {
-			$this->session->setFlash('timer', $ly->timer);
+		if(isset($bap->config['debug']['timer']) && $bap->config['debug']['timer']) {
+			$this->session->setFlash('timer', $bap->timer);
 		}    
 		$this->session->store();
 		header('Location: ' . $this->request->createUrl($urlOrController."/".$method));

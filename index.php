@@ -2,20 +2,20 @@
 
 // PHASE: BOOTSTRAP
 //
-define('LYDIA_INSTALL_PATH', dirname(__FILE__));
-define('LYDIA_SITE_PATH', LYDIA_INSTALL_PATH . '/site');
+define('BAPELSIN_INSTALL_PATH', dirname(__FILE__));
+define('BAPELSIN_SITE_PATH', BAPELSIN_INSTALL_PATH . '/site');
 
-require_once(LYDIA_INSTALL_PATH.'/src/bootstrap.php');
+require_once(BAPELSIN_INSTALL_PATH.'/src/bootstrap.php');
 
-$ly= CLydia::instance();
+$bap= CBapelsin::instance();
 
 
 //
 // PHASE: FRONTCONTROLLER ROUTE
 //
-$ly->frontControllerRoute();
+$bap->frontControllerRoute();
 //
 // PHASE: THEME ENGINE RENDER
 //
-$ly->themeEngineRender();
+$bap->themeEngineRender();
 
