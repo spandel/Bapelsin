@@ -1,5 +1,5 @@
 <?php
-class CMUser extends CObject implements IHasSQL, ArrayAccess 
+class CMUser extends CObject implements IHasSQL, ArrayAccess, IModule
 {
 	 public $profile = array();
 
@@ -55,6 +55,18 @@ class CMUser extends CObject implements IHasSQL, ArrayAccess
 		
 		return  (($groups[0]['id'])==1);
 	}
+	public function manage($action=null)
+	{
+		switch($action)
+		{
+		case 'install':
+			return $this->init();
+			break;
+		default:
+			throw new Exception('Unsupported action for this module.');
+			break;
+		}	
+	}
 	public function init() 
 	{
 		try 
@@ -81,7 +93,7 @@ class CMUser extends CObject implements IHasSQL, ArrayAccess
 			$this->db->query(self::SQL('insert into user2group'), array($idRootUser, $idUserGroup));
 			$this->db->query(self::SQL('insert into user2group'), array($idDoeUser, $idUserGroup));
 			
-			$this->session->addMessage('notice', 'Successfully created the database tables and created a default admin user as root:root.');
+			return array('success', 'Successfully created the database tables and created a default admin user as root:root.');
 		} 
 		catch(Exception$e) 
 		{

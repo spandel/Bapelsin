@@ -1,5 +1,5 @@
 <?php
-class CMGuestbook extends CObject implements IHasSQL
+class CMGuestbook extends CObject implements IHasSQL, IModule
 {
 	public function __construct()
 	{
@@ -19,11 +19,23 @@ class CMGuestbook extends CObject implements IHasSQL
   		}
   		return $queries[$key];
 	}
+	public function manage($action=null)
+	{
+		switch($action)
+		{
+		case 'install':
+			return $this->init();
+			break;
+		default:
+			throw new Exception('Unsupported action for this module.');
+			break;
+		}
+	}
   	public function init() 
   	{
   		try {
 			$this->db->query(self::SQL("create table guestbook"));
-			$this->session->addMessage('success', 'Created table.');
+			return array('success', 'Created table.');
 		} 
 		catch(Exception$e) 
 		{

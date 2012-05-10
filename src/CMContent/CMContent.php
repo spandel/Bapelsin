@@ -1,5 +1,5 @@
 <?php
-class CMContent extends CObject implements IHasSQL, ArrayAccess {
+class CMContent extends CObject implements IHasSQL, ArrayAccess, IModule {
 	
 	public $data;
 
@@ -13,6 +13,18 @@ class CMContent extends CObject implements IHasSQL, ArrayAccess {
 		else 
 		{
 			$this->data = array();
+		}
+	}
+	public function manage($action=null)
+	{
+		switch($action)
+		{
+		case 'install':
+			return $this->init();
+			break;
+		default:
+			throw new Exception('Unsupported action for this module.');
+			break;
 		}
 	}
 	public function offsetSet($offset, $value) { if (is_null($offset)) { $this->data[] = $value; } else { $this->data[$offset] = $value; }}
@@ -48,7 +60,7 @@ class CMContent extends CObject implements IHasSQL, ArrayAccess {
 			$this->db->query(self::SQL('drop table content'));
 			$this->db->query(self::SQL('create table content'));
 			$this->db->query(self::SQL('insert content'), array('hello-world', 'post', 'Hello World', 'This is a demo post.', 'plain', $this->user['id']));
-			$this->session->addMessage('success', 'Successfully created the database tables and created a default "Hello World" blog post, owned by you.');
+			return array('success', 'Successfully created the database tables and created a default "Hello World" blog post, owned by you.');
 		} catch(Exception$e) 
 		{			
 			die("$e<br/>Failed to open database: " . $this->config['database'][0]['dsn']);
