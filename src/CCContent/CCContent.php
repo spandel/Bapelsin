@@ -18,22 +18,36 @@ class CCContent extends CObject implements IController{
 		$this->redirectToController();
 	}
 	public function handler()
-	{
+	{		
 		if(isset($_POST['doSave']))
 		{
 			$this->edit();
 		}
+		if(isset($_POST['doRemove']))
+		{			
+			$this->remove();
+		}		
 	}
 	public function create()
 	{
 		$this->edit();
 	}
+	public function remove($id=null)
+	{
+		$content=new CMContent($id);
+		$form = new CFormContent($content);
+		$content['id']    = $form['id']['value'];
+		//$this->instance()->AAAAAAAAAAAAAAAAAAAAAAAAAAAHHHHHHHGHGHGHGHGHGHG=$content['id'];
+		$content->remove($_POST['id']);
+		$this->redirectToController('index');
+	}
 	public function edit($id=null)
 	{
 		$content=new CMContent($id);
 		$form = new CFormContent($content);
-		
+		$form->form['action']=$this->request->createUrl('content/handler');
 		$status=$form->check();
+		
 		if($status===false)
 		{
 			$this->addMessage('notice', 'The form is incomplete.');

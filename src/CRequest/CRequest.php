@@ -9,7 +9,7 @@ class CRequest
 		$this->cleanUrl= $urlType= 1 ? true : false;
 		$this->querystringUrl = $urlType= 2 ? true : false;
 	}
-	public function init($baseUrl = null)
+	public function init($baseUrl = null, $routing=null)
 	{
 		$requestUri = $_SERVER['REQUEST_URI'];
 		$scriptName = $_SERVER['SCRIPT_NAME'];
@@ -22,7 +22,16 @@ class CRequest
 		$this->current_url= $currentUrl;
 		
 		$query = substr($_SERVER['REQUEST_URI'], strlen(rtrim(dirname($_SERVER['SCRIPT_NAME']), '/')));
-		$splits = explode('/', trim($query, '/'));
+		
+		$request=trim($query, '/');
+		
+		if(is_array($routing) && isset($routing[$request]) && $routing[$request]['enabled']) {
+			
+			$request = $routing[$request]['url'];
+			
+		}
+		
+		$splits = explode('/', $request);
 		
 		if(strpos($splits[0],".php")===false)
 		{
@@ -45,7 +54,7 @@ class CRequest
     
 		$this->request_uri= $_SERVER['REQUEST_URI'];
 		$this->script_name= $_SERVER['SCRIPT_NAME'];
-		$this->query= $query;
+		$this->quedry= $query;
 		$this->splits= $splits;
 		$this->controller= $controller;
 		$this->method= $method;

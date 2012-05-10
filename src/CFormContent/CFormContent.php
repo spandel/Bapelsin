@@ -14,7 +14,8 @@ class CFormContent extends CForm {
     	     ->addElement(new CFormElementTextarea('data', array('label'=>'Content:', 'value'=>$content['data'])))
     	     ->addElement(new CFormElementText('type', array('value'=>$content['type'])))
     	     ->addElement(new CFormElementText('filter', array('value'=>$content['filter'])))
-    	     ->addElement(new CFormElementSubmit($save, 'doSave'));
+    	     ->addElement(new CFormElementSubmit($save, 'doSave'))
+    	     ->addElement(new CFormElementSubmit('remove', 'doRemove'));
 
         $this->setValidation('title', array('not_empty'))
        	     ->setValidation('key', array('not_empty'));

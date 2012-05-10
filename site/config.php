@@ -4,9 +4,9 @@ error_reporting(-1);
 ini_set('display_errors',1);
 
 //turn on/off debugging
-$bap->config['debug']['display-bapelsin'] = false;
+$bap->config['debug']['display-bapelsin'] = true;
 $bap->config['debug']['db-num-queries']=true;
-$bap->config['debug']['db-queries']=false;
+$bap->config['debug']['db-queries']=true;
 $bap->config['debug']['timer']=true;
 
 //set database(s)
@@ -136,6 +136,9 @@ $bap->config['theme'] = array(
 		),
 	);
 
+$bap->config['routing']=array(
+	'home' =>array('enabled'=>true, 'url'=>'index/index'),	
+);
 
 
 /**

@@ -22,7 +22,7 @@ class CBapelsin implements ISingleton
 	public function frontControllerRoute()
 	{
 		$this->request=new CRequest($this->config['url_type']);
-		$this->request->init($this->config['base_url']);
+		$this->request->init($this->config['base_url'], $this->config['routing']);
 		
 		$controller=$this->request->controller;
 		$method=$this->request->method;
