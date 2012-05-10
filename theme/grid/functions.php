@@ -1,5 +1,5 @@
 <?php
-
+/*
 $login=login_menu();
 $bap->data['header']="Bapelsin.";
 $bap->data['slogan']="The smart framework.";
@@ -51,5 +51,5 @@ $bap->data['slogan-adjektivs']=array(
 	);
 
 $bap->data['slogan']="The {$bap->data['slogan-adjektivs'][array_rand($bap->data['slogan-adjektivs'])]} framework.";
-
+*/
 

@@ -88,6 +88,8 @@ class CBapelsin implements ISingleton
     	
     	extract($this->data);
     	extract($this->views->getData());
+    	if(isset($this->config['theme']['data']))
+    		extract($this->config['theme']['data']);
     	
     	$template="default.tpl.php";
     	if(isset($this->config['theme']['template_file']))
