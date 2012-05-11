@@ -77,5 +77,7 @@ EOD;
 $html
 </ul>
 EOD;
+	$this->views->setTitle($this->data['title']);
+	$this->views->addString($this->data['main'],array(),'primary');
 	}	
 }

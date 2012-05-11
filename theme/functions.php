@@ -76,8 +76,16 @@
 	}
 	function theme_url($url) 
 	{
-		$bap = CBapelsin::instance();
-		return "{$bap->request->base_url}theme/{$bap->config['theme']['name']}/{$url}";
+		$newUrl=CBapelsin::Instance()->themeUrl . "/{$url}";
+		//echo"XXXXX".$newUrl."XXXXX";
+		//if(file_exists($newUrl))
+			return CBapelsin::Instance()->themeUrl . "/{$url}";
+	//	else
+		//	return theme_parent_url($url."?parent");
+	}
+	function theme_parent_url($url) 
+	{
+		return CBapelsin::Instance()->themeParentUrl . "/{$url}";
 	}
 	function filter_data($data, $filter)
 	{

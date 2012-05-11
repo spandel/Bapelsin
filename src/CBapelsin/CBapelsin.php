@@ -73,20 +73,61 @@ class CBapelsin implements ISingleton
 	public function themeEngineRender()
 	{
 		$this->session->store();
-		$bap=&$this;
+		
+		if(!isset($this->config['theme']))
+		{
+			return;
+		}
 		$themeName= $this->config['theme']['name'];
-		$themePath= BAPELSIN_INSTALL_PATH . "/theme/{$themeName}";
-    	$themeUrl = $bap->request->base_url."theme/{$themeName}";
-    	$this->data['stylesheet'] = "{$themeUrl}/".$this->config['theme']['stylesheet'];
+		
+		$themePath= BAPELSIN_INSTALL_PATH . "/{$this->config['theme']['path']}";
+    	$themeUrl = $this->request->base_url.$this->config['theme']['path'];
+    	
+    	$parentPath = null;
+    	$parentUrl = null;
+    	
+    	if(isset($this->config['theme']['parent'])) 
+    	{
+    		$parentPath = BAPELSIN_INSTALL_PATH . '/' . $this->config['theme']['parent'];
+    		$parentUrl   = $this->request->base_url . $this->config['theme']['parent'];
+    	}
+    	
+    	//$this->data['stylesheet'] = "{$themeUrl}/".$this->config['theme']['stylesheet'];
+    	
+    	$this->data['stylesheet'] =$this->config['theme']['stylesheet'];
+    	
+    	$this->themeUrl = $themeUrl;
+    	$this->themeParentUrl = $parentUrl;
+    	
+    	if(is_array($this->config['theme']['menu_to_region'])) 
+    	{
+    		foreach($this->config['theme']['menu_to_region'] as $key => $val) 
+    		{
+    			$this->views->addString($this->drawMenu($key), array(), $val);
+        	}
+        }
+    	
+    	$bap=&$this;
     	
     	include(BAPELSIN_INSTALL_PATH."/theme/functions.php");
+    	
+    	if($parentPath) 
+    	{
+    		if(is_file("{$parentPath}/functions.php")) 
+    		{
+    			include "{$parentPath}/functions.php";
+    		}
+    	}
+    	
     	$functionsPath="{$themePath}/functions.php";
     	if(is_file($functionsPath))
     	{
     		include($functionsPath);
     	}
     	
-    	extract($this->data);
+    	
+    	//extract($this->data);
+    	$this->views->setVariable('stylesheet',$this->data['stylesheet']);
     	extract($this->views->getData());
     	if(isset($this->config['theme']['data']))
     		extract($this->config['theme']['data']);
@@ -95,13 +136,38 @@ class CBapelsin implements ISingleton
     	if(isset($this->config['theme']['template_file']))
     		$template=$this->config['theme']['template_file'];
     	
-    	
-    	include("{$themePath}/".$template);
+    	if(is_file("{$themePath}/{$template}")) 
+    	{
+    		include("{$themePath}/{$template}");
+   		} else if(is_file("{$parentPath}/{$template}")) 
+   		{
+   			include("{$parentPath}/{$template}");
+   		} else 
+   		{
+   			throw new Exception('No such template file.');
+   		}
+    	//include("{$themePath}/".$template);
     	
 		/*echo "<h1>I'm CLydia::themeEngineRender</h1><p>You are most welcome. Nothing to render at the moment</p>";
 		echo "<h2>The content of the config array:</h2><pre>", htmlentities(print_r($this->config, true)) . "</pre>";
 		echo "<h2>The content of the data array:</h2><pre>", htmlentities(print_r($this->data, true)) . "</pre>";
 		echo "<h2>The content of the request array:</h2><pre>", htmlentities(print_r($this->request, true)) . "</pre>";*/
+	}
+	public function drawMenu($menu)
+	{
+		$items=null;
+		$items="<ul class='menu $menu'>";
+		foreach($this->config['menus'][$menu] as $val)
+		{
+			 $selected = null;
+			 $url=$this->request->createUrl($val['url']);
+			 if($url == $this->request->getCurrentUrl()) 
+			 {
+			 	 $selected = " class='selected'";
+			 }
+			 $items.="<li><a{$selected} href='{$url}'>{$val['label']}</a></li>";
+		}
+		return $items."</ul>";
 	}
 	public static function instance()
 	{	

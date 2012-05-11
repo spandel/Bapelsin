@@ -4,9 +4,9 @@ error_reporting(-1);
 ini_set('display_errors',1);
 
 //turn on/off debugging
-$bap->config['debug']['display-bapelsin'] = true;
-$bap->config['debug']['db-num-queries']=true;
-$bap->config['debug']['db-queries']=true;
+$bap->config['debug']['display-bapelsin'] = false;
+$bap->config['debug']['db-num-queries']=false;
+$bap->config['debug']['db-queries']=false;
 $bap->config['debug']['timer']=true;
 
 //set database(s)
@@ -118,13 +118,15 @@ EOD;
 //set what theme to use.
 $bap->config['theme'] = array(
 	'name'=> 'grid', 
-	'stylesheet'=>'style.php',
+	'path'=>'site/themes/mytheme',
+	'parent'=>'theme/grid',
+	'stylesheet'=>'style.css',
 	'template_file'=>'default.tpl.php',
-	'regions'=>array('flash','featured-first','featured-middle','featured-last',
-		'primary','sidebar','triptych-first','triptych-middle','triptych-last',
-		'footer-column-one','footer-column-two','footer-column-three','footer-column-four',
-		'footer',
-		),
+	'regions'=>array('navbar','flash','featured-first','featured-middle','featured-last',
+					'primary','sidebar','triptych-first','triptych-middle','triptych-last',
+					'footer-column-one','footer-column-two','footer-column-three','footer-column-four',
+					'footer',
+	),
 	'data'=>array(
 		'header'=>'Bapelsin.',
 		'slogan'=>"The {$adj[array_rand($adj)]} framework.",
@@ -133,13 +135,25 @@ $bap->config['theme'] = array(
 		'logo_width'=>110,
 		'logo_height'=>110,
 		'footer'=>$foot,
-		),
-	);
-
-$bap->config['routing']=array(
-	'home' =>array('enabled'=>true, 'url'=>'index/index'),	
+	),
+	'menu_to_region'=>array(
+		'navbar'=>'navbar',
+	),
 );
 
+$bap->config['routing']=array(
+	'home' =>array('enabled'=>true, 'url'=>'index/index'),
+);
+
+$bap->config['menus']=array(
+	'navbar'=>array(
+		'home'      => array('label'=>'Home','url'=>'index'),
+		'modules'   => array('label'=>'Modules','url'=>'modules'),
+		'content'   => array('label'=>'Content','url'=>'content'),
+		'guestbook' => array('label'=>'Guestbook','url'=>'guestbook'),
+		'blog'      => array('label'=>'Blog','url'=>'blog'),
+	),
+);
 
 /**
 * What type of urls should be used?

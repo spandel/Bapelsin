@@ -31,7 +31,10 @@
 
 
 
-
+.alwaysShowScrollbar() {
+	overflow:-moz-scrollbars-vertical;
+	overflow-y:scroll;
+}
 
 .wrap(){
 	width:@total-width;
@@ -71,6 +74,10 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section{display
 audio,canvas,video{display:inline-block;*display:inline;*zoom:1;}
 audio:not([controls]){display:none;}
 [hidden]{display:none;}
+
+html{
+	.alwaysShowScrollbar;
+}
 
 body{
 	background:@bgcolor;
@@ -348,6 +355,35 @@ text-align:left;
 #inner-wrap-footer{
 	.wrap();
 	
+}
+#navbar{
+	ul.menu{
+		list-style-type:none;
+		padding:2px 8px;
+		margin:0;
+		li{
+			padding:0;
+			margin:0;
+			display:inline;
+			a{
+				padding:0px 8px;
+				padding-top:4px;
+				padding-bottom:4px;
+				text-decoration:none;
+				/*border:2px solid transparent;*/
+				&:hover{
+					background:lighten(@link-color, 8%);
+					color:white;
+					/*border:2px solid #999;*/
+				}
+				&.selected{
+					background:lighten(@link-color, 10%);
+					color:white;
+					/*border:2px solid #999;*/
+				}
+			}
+		}
+	}
 }
 .gravatar{
 	vertical-align:middle;

@@ -1,0 +1,31 @@
+@import url(../../../theme/grid/style.php);
+
+
+body{
+	background-color:#def;
+}
+#content{
+	background-color:#fff;	
+}
+#outer-wrap-header{
+	background-color:#def;
+	
+}
+#outer-wrap-footer{
+	background-color:#def;
+}
+a{
+	color:red;
+}
+ul.navbar li a{
+	-webkit-border-top-left-radius: 10px;
+	-webkit-border-top-right-radius: 10px;
+	-moz-border-radius-topleft: 10px;
+	-moz-border-radius-topright: 10px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+ul.navbar li a.selected{
+	background-color:white !important;
+	color:#088 !important;
+}

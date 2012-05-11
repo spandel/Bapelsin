@@ -1,7 +1,7 @@
 <?php
 class CCGuestbook extends CObject implements IController{
 
-	private $pageTitle="Lydia guestbook";
+	private $pageTitle="Bapelsin guestbook";
 	private $gbModel;
 	
   	public function __construct()
