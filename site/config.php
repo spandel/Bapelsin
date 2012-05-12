@@ -115,6 +115,10 @@ Here's Daniels
 </p>
 
 EOD;
+
+//
+$bap->config['create_dummy_text']=true;
+
 //set what theme to use.
 $bap->config['theme'] = array(
 	'name'=> 'grid', 

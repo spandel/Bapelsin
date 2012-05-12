@@ -12,8 +12,10 @@ class CFormContent extends CForm {
     	     ->addElement(new CFormElementText('title', array('value'=>$content['title'])))
     	     ->addElement(new CFormElementText('key', array('value'=>$content['key'])))
     	     ->addElement(new CFormElementTextarea('data', array('label'=>'Content:', 'value'=>$content['data'])))
-    	     ->addElement(new CFormElementText('type', array('value'=>$content['type'])))
-    	     ->addElement(new CFormElementText('filter', array('value'=>$content['filter'])))
+    	     //->addElement(new CFormElementText('type', array('value'=>$content['type'])))
+    	     ->addElement(new CFormElementSelect('type', array('value'=>$content['type'],'options'=>array('post'=>'no','page'=>'no'))))
+    	     //->addElement(new CFormElementText('filter', array('value'=>$content['filter'])))
+    	     ->addElement(new CFormElementSelect('filter', array('value'=>$content['filter'],'options'=>array('plain'=>'no','bbcode'=>'no','htmlpurify'=>'no'))))
     	     ->addElement(new CFormElementSubmit($save, 'doSave'))
     	     ->addElement(new CFormElementSubmit('remove', 'doRemove'));
 

@@ -48,6 +48,7 @@ class CFormElement implements ArrayAccess
 		$value    = isset($this['value']) ? " value='{$this['value']}'" : null;
 		$validates = (isset($this['validation-pass']) && $this['validation-pass'] === false) ? ' validation-failed' : null;
 		$url=isset($this['url']) ? "{$this['url']}'" : null;
+		$selecteds=isset($this['value']) ? $this['value'] : null;
 		
 		$messages="";
 		if(isset($this['validation_messages']))
@@ -58,10 +59,26 @@ class CFormElement implements ArrayAccess
 			}
 			$messages="<ul class='validation-message'>\n{$messages}\n</ul>\n";
 		}
-		
+		if($type && $this['type'] == 'select') 
+		{
+			
+			$options="";
+			foreach($this['options'] as $key => $val)
+			{
+				$selected="";
+				if($selecteds!=null && $selecteds==$key)
+					$selected="selected='selected'";
+				//if($val=='yes' )
+				//	$selected="selected='selected'";
+				
+				$options.="<option $selected>$key</option>\n";
+			}
+			
+			return "<p><label for='$id'>$label</label><br><select id='$id'{$type}{$class}{$name}{$autofocus}{$readonly}>{$options}</select></p>\n";   
+		} 
 		if($type && $this['type'] == 'textarea') 
 		{
-			return "<p><label for='$id'>$label</label><br><textarea id='$id'{$type}{$class}{$name}{$autofocus}{$readonly}>{$this['value']}</textarea>\n</p>";   
+			return "<label for='$id'>$label</label><br><textarea id='$id'{$type}{$class}{$name}{$autofocus}{$readonly}>{$this['value']}</textarea>\n";   
 		} 
 		else if($type && $this['type'] == 'hidden') 
 		{
@@ -69,11 +86,11 @@ class CFormElement implements ArrayAccess
 		} 
 		else if($type && $this['type'] == 'submit') 
 		{
-			return "<p><input id='$id'{$type}{$class}{$name}{$value}{$autofocus}{$readonly} /></p>\n";   
+			return "<input id='$id'{$type}{$class}{$name}{$value}{$autofocus}{$readonly} />\n";   
 		} 
 		else if($type && $this['type']=='link')
 		{
-			return "<p><a href='{$url}'>{$this['name']}</a></p>";
+			return "<a href='{$url}'>{$this['name']}</a>";
 		}
 		else 
 		{			

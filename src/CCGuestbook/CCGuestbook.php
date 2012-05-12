@@ -11,18 +11,22 @@ class CCGuestbook extends CObject implements IController{
   	}
 	public function index()
 	{
+		
+		$form=new CFormGuestbook($this->gbModel);
+		
+		$form->form['action']=$this->request->createUrl('guestbook/handler');
 		$this->views->setTitle($this->pageTitle);
 		$this->views->addInclude(__DIR__ . '/index.tpl.php', array(
 			'entries'=>$this->gbModel->getEntries(), 
+			'form'=>$form,
 			'formAction'=>$this->request->createUrl('guestbook/handler')
 			));  
 	}	
 	public function handler()
 	{
 		if(isset($_POST['doAdd']))
-		{
-			
-			$entry=strip_tags($_POST['newEntry']);
+		{			
+			$entry=strip_tags($_POST['poem']);
 			$poet=strip_tags($_POST['poet']);
 			if($entry!="" && $poet!="")
 				$this->gbModel->addNewEntry($entry, $poet);			
@@ -35,7 +39,8 @@ class CCGuestbook extends CObject implements IController{
 		{
 			$this->gbModel->init();
 		}
-		header('Location: '.$this->request->createUrl('guestbook'));
+		//header('Location: '.$this->request->createUrl('guestbook'));
+		$this->redirectToController();
 	}
 	
 	

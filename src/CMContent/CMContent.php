@@ -60,12 +60,21 @@ class CMContent extends CObject implements IHasSQL, ArrayAccess, IModule {
 		{
 			$this->db->query(self::SQL('drop table content'));
 			$this->db->query(self::SQL('create table content'));
-			$this->db->query(self::SQL('insert content'), array('hello-world', 'post', 'Hello World', 'This is a demo post.', 'plain', $this->user['id']));
-			return array('success', 'Successfully created the database tables and created a default "Hello World" blog post, owned by you.');
+			if(isset($this->config['create_dummy_text']) && $this->config['create_dummy_text'])
+				$this->createDummyText();
+			return array('success', 'Successfully created the database tables and created some default posts and pages, owned by you.');
 		} catch(Exception$e) 
 		{			
 			die("$e<br/>Failed to open database: " . $this->config['database'][0]['dsn']);
 		}
+	}
+	public function createDummyText()
+	{
+		$this->db->query(self::SQL('insert content'), array('hello-world', 'post', 'Hello World', 'This is a demo post.', 'plain', $this->user['id']));
+		$this->db->query(self::SQL('insert content'), array('hello-world2', 'page', 'Hello World2', 'This is a demo post. Again.', 'plain', $this->user['id']));
+		$this->db->query(self::SQL('insert content'), array('hello-world3', 'post', 'Hello World3', '[b]Lorem ipsum[/b] bbcode dolor sit amet, [i]consectetur adipisicing elit,[/i] sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'bbcode', $this->user['id']));
+		$this->db->query(self::SQL('insert content'), array('hello-world4', 'page', 'Hello World4', '<strong>Lorem ipsum dolor sit amet,</strong> html purify consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'htmlpurify', $this->user['id']));
+		$this->db->query(self::SQL('insert content'), array('hello-world5', 'post', 'Hello World5', 'This is a demo post.', 'plain', $this->user['id']));
 	}
   
 	public function save() 

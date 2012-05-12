@@ -393,7 +393,19 @@ text-align:left;
 	background-color:@maincolor;
 	padding-top:@magic-number;
 	margin:0;
-	
+}
+#form-element-filter, #form-element-type{
+	display:block;
+}
+#form-element-filter, #form-element-type, #form-element-doSave, #form-element-doRemove{
+	display:inline;
+}
+#form-element-title, #form-element-key, #form-element-poet{
+	width:70%;
+}
+#form-element-data, #form-element-poem{
+	width:100%;
+	height:@magic-number*10;
 }
 #footer{
 	.column(12);

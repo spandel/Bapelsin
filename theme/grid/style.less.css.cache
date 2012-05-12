@@ -1,4 +1,4 @@
-a:4:{s:4:"root";s:14:"style.less.css";s:8:"compiled";s:9543:"html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+a:4:{s:4:"root";s:14:"style.less.css";s:8:"compiled";s:9857:"html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
   margin:0;
   padding:0;
   border:0;
@@ -424,6 +424,13 @@ p#comment-time:after { clear:both; }
   padding-top:22px;
   margin:0;
 }
+#form-element-filter, #form-element-type { display:block; }
+#form-element-filter, #form-element-type, #form-element-doSave, #form-element-doRemove { display:inline; }
+#form-element-title, #form-element-key, #form-element-poet { width:70%; }
+#form-element-data, #form-element-poem {
+  width:100%;
+  height:220px;
+}
 #footer {
   display:inline;
   float:left;
@@ -462,4 +469,4 @@ p#comment-time:after { clear:both; }
 .notice a, .warning a { color:#514721; }
 .success a { color:#264409; }
 .info a { color:#205791; }
-";s:5:"files";a:2:{s:79:"/home/saxon/students/20112/dasp11/www/phpmvc/bapelsin/theme/grid/style.less.css";i:1336757160;s:103:"/home/saxon/students/20112/dasp11/www/phpmvc/bapelsin/theme/grid/semantic.gs/stylesheets/less/grid.less";i:1335986808;}s:7:"updated";i:1336757162;}
+";s:5:"files";a:2:{s:79:"/home/saxon/students/20112/dasp11/www/phpmvc/bapelsin/theme/grid/style.less.css";i:1336838401;s:103:"/home/saxon/students/20112/dasp11/www/phpmvc/bapelsin/theme/grid/semantic.gs/stylesheets/less/grid.less";i:1335986808;}s:7:"updated";i:1336838404;}
