@@ -8,7 +8,7 @@ foreach($modules as $item)
 	if(is_array($item) && !empty($item))
 	{
 			echo "<li>\n
-			{$item['name']}\n
+			<a href='".create_url("modules/view/".$item['name'])."'>{$item['name']}</a>\n
 			</li>\n";
 	}
 }

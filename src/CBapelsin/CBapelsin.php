@@ -1,8 +1,14 @@
 <?php
+/**
+* The main class for Bapelsin. Contains everything!
+*/
 class CBapelsin implements ISingleton
 {	
 	private static $instance = null;
 	
+	/**
+	* Constructor
+	*/
 	protected function __construct()
 	{
 		$this->timer['first']=round(microtime(true),5);
@@ -19,6 +25,9 @@ class CBapelsin implements ISingleton
 		$this->views=new CViewContainer();
 		$this->user=new CMUser($this);
 	}
+	/**
+	* Checks the url and routes to the correct controller!
+	*/
 	public function frontControllerRoute()
 	{
 		$this->request=new CRequest($this->config['url_type']);
@@ -70,6 +79,9 @@ class CBapelsin implements ISingleton
 		$this->data['debug']="REQUEST_URI - {$_SERVER['REQUEST_URI']}\n";
 		$this->data['debug'].="SCRIPT_NAME - {$_SERVER['SCRIPT_NAME']}\n";
 	}
+	/**
+	* Renders the request as HTML in your preferred way
+	*/
 	public function themeEngineRender()
 	{
 		$this->session->store();
@@ -153,6 +165,10 @@ class CBapelsin implements ISingleton
 		echo "<h2>The content of the data array:</h2><pre>", htmlentities(print_r($this->data, true)) . "</pre>";
 		echo "<h2>The content of the request array:</h2><pre>", htmlentities(print_r($this->request, true)) . "</pre>";*/
 	}
+	/**
+	*
+	* @return string with a menu
+	*/
 	public function drawMenu($menu)
 	{
 		$items=null;
@@ -169,6 +185,10 @@ class CBapelsin implements ISingleton
 		}
 		return $items."</ul>";
 	}
+	/**
+	* Returns the current instance of CBapelsin. Gives access to everything. 
+	* @return CBapelsin  
+	*/
 	public static function instance()
 	{	
 		if(self::$instance==null)
