@@ -65,7 +65,7 @@ class CFormElement implements ArrayAccess
 			if(isset($this['checked']))
 				$checked="checked";
 			
-			return "<input id='$id'{$type}{$class}{$name}{$value}{$checked}/>\n";
+			return "<label for='$id'>$label</label><input id='$id'{$type}{$class}{$name}{$value}{$checked}/>\n";
 		}
 		if($type && $this['type'] == 'select') 
 		{
