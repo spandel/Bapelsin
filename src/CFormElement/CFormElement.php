@@ -59,6 +59,14 @@ class CFormElement implements ArrayAccess
 			}
 			$messages="<ul class='validation-message'>\n{$messages}\n</ul>\n";
 		}
+		if($type && $this['type']=='checkbox')
+		{
+			$checked="";
+			if(isset($this['checked']))
+				$checked="checked";
+			
+			return "<input id='$id'{$type}{$class}{$name}{$value}{$checked}/>\n";
+		}
 		if($type && $this['type'] == 'select') 
 		{
 			

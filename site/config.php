@@ -122,9 +122,10 @@ $bap->config['create_dummy_text']=true;
 //set what theme to use.
 $bap->config['theme'] = array(
 	'name'=> 'grid', 
-	'path'=>'site/themes/mytheme',
-	'parent'=>'theme/grid',
-	'stylesheet'=>'style.css',
+	'path'=>'theme/grid',
+	//'path'=>'site/themes/mytheme',
+	//'parent'=>'theme/grid',
+	'stylesheet'=>'style.php',
 	'template_file'=>'default.tpl.php',
 	'regions'=>array('navbar','flash','featured-first','featured-middle','featured-last',
 					'primary','sidebar','triptych-first','triptych-middle','triptych-last',
