@@ -146,6 +146,16 @@ $bap->config['theme'] = array(
 	),
 );
 
+$bap->config['show_login_menu']=true;
+$bap->config['login_menu']=array(	
+	"login"			=> array("src"=>"user/login",'label'=>"Login"),
+	"acp"			=> array("src"=>"acp",'label'=>"ACP"),
+	"logout"		=> array("src"=>"user/logout",'label'=>"Logout"),
+	"profile"		=> array('src'=>"user/profile", 'label'=>"__profile"),
+	"show_gravatar"	=> true,
+	);
+
+
 $bap->config['routing']=array(
 	'home' =>array('enabled'=>true, 'url'=>'index/index'),
 );

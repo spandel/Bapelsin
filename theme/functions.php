@@ -30,25 +30,45 @@
 	}
 	function login_menu()
 	{
+		/*
+			$bap->config['login_menu']=array(	
+				"login"			=> array("src"=>"user/login",'label'=>"Login"),
+				"acp"			=> array("src"=>"acp",'label'=>"ACP"),
+				"logout"		=> array("src"=>"user/logout",'label'=>"Logout"),
+				"profile"		=> array('src'=>"user/profile", 'label'=>"__profile"),
+				"show_gravatar"	=> true,
+	);
+		*/
 		$menu="";
 		$bap=CBapelsin::instance();
 		
 		if($bap->user->isAuthenticated())
 		{
 			$user=$bap->user->getUserProfile();
-			$menu="<a href='http://gravatar.com/site/signup/'><img class='gravatar' src='".get_gravatar(20)."'></a>";
-			$menu.="<a href='{$bap->request->createUrl('user/profile')}'>{$user['acronym']}</a> ";
+			$menu="";
+			if($bap->config['login_menu']["show_gravatar"])
+				$menu.="<a href='http://gravatar.com/site/signup/'><img class='gravatar' src='".get_gravatar(20)."'></a>";
+			
+			if($bap->config['login_menu']['profile']['label']=="__profile")
+				$label=$user['acronym'];
+			else
+				$label=$bap->config['login_menu']['profile']['label'];
+			
+			$menu.="<a href='{$bap->request->createUrl($bap->config['login_menu']['profile']['src'])}'>{$label}</a> ";
 			if($bap->user->isAdministrator())
 			{
-				$menu.="<a href='{$bap->request->createUrl('acp')}'>acp</a> ";
+				$menu.="<a href='{$bap->request->createUrl($bap->config['login_menu']['acp']['src'])}'>{$bap->config['login_menu']['acp']['label']}</a> ";
 			}
-			$menu.="<a href='{$bap->request->createUrl('user/logout')}'>logout</a>";
+			$menu.="<a href='{$bap->request->createUrl($bap->config['login_menu']['logout']['src'])}'>{$bap->config['login_menu']['logout']['label']}</a>";
 		}
 		else
 		{
-			$menu="<a href='{$bap->request->createUrl('user/login')}'>Login</a>";
+			$menu="<a href='{$bap->request->createUrl($bap->config['login_menu']['login']['src'])}'>{$bap->config['login_menu']['login']['label']}</a>";
 		}		
-		return $menu;
+		if(isset($bap->config['show_login_menu']) && isset($bap->config['show_login_menu']))
+			return $menu;
+		else 
+			return "";
 	}
 	function render_views($region='default')
 	{

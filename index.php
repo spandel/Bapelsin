@@ -8,8 +8,6 @@ define('BAPELSIN_SITE_PATH', BAPELSIN_INSTALL_PATH . '/site');
 require_once(BAPELSIN_INSTALL_PATH.'/src/bootstrap.php');
 
 $bap= CBapelsin::instance();
-
-
 //
 // PHASE: FRONTCONTROLLER ROUTE
 //
