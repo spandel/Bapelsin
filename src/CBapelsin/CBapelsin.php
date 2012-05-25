@@ -14,7 +14,11 @@ class CBapelsin implements ISingleton
 		$this->timer['first']=round(microtime(true),5);
 		
 		$bap=&$this;
-		require(BAPELSIN_SITE_PATH.'/config.php');
+		if(is_file(BAPELSIN_SITE_PATH.'/config.php'))
+			require(BAPELSIN_SITE_PATH.'/config.php');
+		else{
+			die("You have to create config.php in Bapelsin/site/");
+		}
 		session_name($this->config['session_name']);
 		session_start();
 		$this->session=new CSession($this->config['session_key']);
