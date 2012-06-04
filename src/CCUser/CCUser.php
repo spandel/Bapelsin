@@ -194,7 +194,7 @@ class CCUser extends CObject implements IController
 			
 		$ret = $this->user->create();
 		$this->session->addMessage($ret, 'Created profile.', 'Failed creating profile.');
-		if($this->userModel->login($username,$password))
+		//if($this->userModel->login($username,$password))
 			$this->redirectToController('profile');
 	}
 }

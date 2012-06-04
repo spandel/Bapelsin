@@ -41,12 +41,27 @@ class CMUser extends CObject implements IHasSQL, ArrayAccess, IModule
       'get group memberships'   => 'SELECT * FROM Groups AS g INNER JOIN User2Groups AS ug ON g.id=ug.idGroups WHERE ug.idUser=?;',
       'update profile'          => "UPDATE User SET name=?, email=?, updated=datetime('now') WHERE id=?;",
       'update password'         => "UPDATE User SET algorithm=?, salt=?, password=?, updated=datetime('now') WHERE id=?;",
+      'get all users'			=> 'SELECT * FROM User;',
+      'modify group'			=> 'UPDATE User2Groups SET idGroups=? WHERE idUser=?;',
      );
 		if(!isset($queries[$key])) 
 		{
 			throw new Exception("No such SQL query, key '$key' was not found.");
 		}
 		return $queries[$key];
+	}
+	public function getUsers()
+	{
+		$users=$this->db->select(self::SQL('get all users'),array());
+		foreach($users as &$val)
+		{
+			$val['groups']=$this->db->select(self::SQL('get group memberships'),array($val['id']));
+		}
+		return $users;
+	}
+	public function modifyGroups($idGroup, $idUser)
+	{
+		$this->db->query(self::SQL('modify group'), array($idGroup, $idUser));
 	}
 	public function isAdministrator()
 	{
